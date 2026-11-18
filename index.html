@@ -504,8 +504,10 @@ const SIGHTINGS = [
   {src:'assets/s5.jpg', loc:'The beach', cap:'Waiting for the bull run. Brought a scarf, just in case.'},
   {src:'assets/s6.jpg', loc:'Undisclosed office', cap:'Subject after one (1) good trade.'},
   {src:'assets/meme3.jpg', loc:'Sell button', cap:'Classic human behavior. Subject studied it for 0.3 seconds.', meme:true},
+  {src:'assets/s10.jpg', loc:'Warehouse rave', cap:'Subject was asked to study human music. Became the DJ instead.'},
   {src:'assets/s8.jpg', loc:'Rock, coast', cap:'Subject made one human friend. It was a monkey.'},
   {src:'assets/s9.jpg', loc:'Rooftop, NYC', cap:"Subject's stop loss, apparently."},
+  {src:'assets/s11.jpg', loc:'Night vision', cap:'Only known photo of BOKI realizing what a memecoin is.'},
   {src:'assets/meme4.jpg', loc:'Community', cap:'When the CTO needs another CTO.', meme:true},
 ];
 const grid=$('#grid');
@@ -647,7 +649,7 @@ CATS.forEach(([k,l])=>{const b=document.createElement('button');b.className='chi
 /* ================= MEME RENDERER ================= */
 const S=1080;
 const cv=document.createElement('canvas');cv.width=S;cv.height=S;const ctx=cv.getContext('2d');
-const BASES=[{src:'assets/boki.png',name:'PFP',pfp:true},...['s1','s2','s3','s4','s5','s6','s7','s8','s9'].map(n=>({src:`assets/${n}.jpg`,name:n}))];
+const BASES=[{src:'assets/boki.png',name:'PFP',pfp:true},...['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11'].map(n=>({src:`assets/${n}.jpg`,name:n}))];
 const LAYOUTS=[['bar','Caption bar'],['impact','Impact'],['bubble','Speech bubble'],['report','Field report'],['subtitle','Subtitle'],['split','Expectation / reality']];
 let state={layout:'bar',base:0,fry:false,wm:true,caps:false};
 const imgCache={};
