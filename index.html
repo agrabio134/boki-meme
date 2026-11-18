@@ -26,7 +26,8 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--sky);color:var(--ink);font-family:var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html,body{overflow-x:hidden;overflow-x:clip}
+body{background:var(--sky);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
@@ -100,7 +101,7 @@ h2 .bar{background:var(--ink);color:#fff;padding:0 .12em;display:inline-block;tr
 .story p:nth-child(3){transform:rotate(-1.2deg);background:var(--green)}
 .story p:nth-child(4){position:relative;transform:rotate(.6deg);align-self:flex-end;background:var(--red)}
 .story p:nth-child(4) small{display:block;font-family:var(--hand);font-size:.5em;text-transform:none;font-weight:700;margin-top:4px}
-.log{background:var(--ink);color:#d8ffe0;font-family:var(--mono);font-size:14px;border:3px solid var(--ink);box-shadow:10px 10px 0 var(--green);position:sticky;top:90px}
+.log{overflow:hidden;background:var(--ink);color:#d8ffe0;font-family:var(--mono);font-size:14px;border:3px solid var(--ink);box-shadow:10px 10px 0 var(--green);position:sticky;top:90px}
 .log-head{display:flex;justify-content:space-between;padding:12px 16px;border-bottom:1px dashed #3a3a3a;color:#fff;font-weight:800;letter-spacing:1px;font-size:12px}
 .log-head b{color:var(--red)}
 .log ol{list-style:none;padding:8px 16px 4px}
@@ -154,7 +155,7 @@ h2 .bar{background:var(--ink);color:#fff;padding:0 .12em;display:inline-block;tr
 .lab{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(20px,3vw,40px);margin-top:46px;align-items:start}
 @media (max-width:960px){.lab{grid-template-columns:1fr}}
 .stage{position:sticky;top:84px;background:var(--ink);padding:14px;box-shadow:10px 10px 0 var(--green)}
-@media (max-width:960px){.stage{position:relative;top:0}}
+
 .stage-top{display:flex;justify-content:space-between;color:#fff;font-family:var(--mono);font-size:12px;letter-spacing:1px;margin-bottom:10px;font-weight:700}
 .stage-top b{color:var(--sky)}
 #preview{width:100%;aspect-ratio:1;background:#222;display:block;image-rendering:auto}
@@ -230,6 +231,27 @@ footer{background:var(--ink);color:#fff;padding:clamp(60px,9vw,110px) clamp(16px
 .bubble::after{content:"";position:absolute;bottom:-14px;right:44px;border:12px solid transparent;border-top-color:var(--ink);border-bottom:0}
 .bubble.on{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+/* ---------- PHONE: meme lab ---------- */
+@media (max-width:960px){
+  .lab{gap:16px;margin-top:28px}
+  .stage{position:sticky;top:56px;z-index:20;padding:8px;box-shadow:0 8px 0 var(--green);margin:0 -4px}
+  .stage-top{margin-bottom:6px;font-size:10px}
+  #preview{width:auto;height:min(42vh,calc(100vw - 40px));max-width:100%;margin:0 auto}
+  .stage-hint{display:none}
+  .panel{box-shadow:4px 4px 0 var(--ink)}
+  .pblock{padding:14px}
+  .gen{font-size:24px;padding:12px 8px}
+  .gen.chaos{font-size:17px;padding:12px}
+  .chips{gap:6px}
+  .chip{font-size:11px;padding:7px 9px}
+  .bases{grid-template-columns:repeat(6,1fr);gap:6px}
+  .actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .actions .btn{justify-content:center;font-size:14px;padding:10px 6px;white-space:nowrap}
+  .peek{width:84px;right:10px}
+  .peek.lab-hide{transform:translateY(110%)}
+  .bubble{right:12px;bottom:78px;font-size:18px;max-width:200px}
+}
+@media (max-width:420px){.bases{grid-template-columns:repeat(5,1fr)}}
 </style>
 </head>
 <body>
@@ -488,6 +510,7 @@ setInterval(()=>{
 },1000);
 const pokes=["stop poking me","i'm on break","what is a 'roadmap'","humans are so loud","i came here to study you. it went badly.","have you tried giving up? it's nice.","no thoughts. just BOKI.","the mothership isn't answering my texts","3 minutes was generous","i'm not a frog. i don't know what i am.","you again?","wen nap"];
 let pi=0; peek.addEventListener('click',()=>say(pokes[pi++%pokes.length]));
+new IntersectionObserver(es=>{peek.classList.toggle('lab-hide',es[0].isIntersecting&&innerWidth<=960)},{threshold:.05}).observe(document.querySelector('#lab .lab'));
 
 /* ================= SIGHTINGS ================= */
 const SIGHTINGS = [
