@@ -153,15 +153,15 @@ h2 .bar{background:var(--ink);color:#fff;padding:0 .12em;display:inline-block;tr
 /* ---------- MEME LAB ---------- */
 #lab{background:var(--sky)}
 .lab{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(20px,3vw,40px);margin-top:46px;align-items:start}
-@media (max-width:960px){.lab{grid-template-columns:1fr}}
-.stage{position:sticky;top:84px;background:var(--ink);padding:14px;box-shadow:10px 10px 0 var(--green)}
+@media (max-width:960px){.lab{grid-template-columns:minmax(0,1fr)}}
+.stage{min-width:0;position:sticky;top:84px;background:var(--ink);padding:14px;box-shadow:10px 10px 0 var(--green)}
 
 .stage-top{display:flex;justify-content:space-between;color:#fff;font-family:var(--mono);font-size:12px;letter-spacing:1px;margin-bottom:10px;font-weight:700}
 .stage-top b{color:var(--sky)}
 #preview{width:100%;aspect-ratio:1;background:#222;display:block;image-rendering:auto}
 .stage-hint{color:#999;font-family:var(--mono);font-size:11px;margin-top:10px;text-align:center}
-.panel{background:#fff;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink)}
-.pblock{padding:18px 20px;border-bottom:3px solid var(--ink)}
+.panel{min-width:0;max-width:100%;background:#fff;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink)}
+.pblock{padding:18px 20px;border-bottom:3px solid var(--ink);min-width:0}
 .pblock:last-child{border-bottom:0}
 .plabel{font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
 .plabel span{color:#777;font-weight:400}
@@ -195,7 +195,7 @@ textarea:focus{background:#fff;box-shadow:3px 3px 0 var(--green)}
 .actions{display:flex;flex-wrap:wrap;gap:10px}
 .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,140%);opacity:0;visibility:hidden;background:var(--ink);color:#fff;font-family:var(--mono);font-weight:700;font-size:13px;padding:12px 18px;border:2px solid #fff;z-index:200;transition:transform .3s cubic-bezier(.2,1.4,.4,1)}
 .toast.on{transform:translate(-50%,0);opacity:1;visibility:visible}
-.history{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+.history{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;max-width:100%;min-width:0;-webkit-overflow-scrolling:touch}
 .history img{width:56px;height:56px;border:2px solid var(--ink);flex:0 0 auto;cursor:pointer;object-fit:cover}
 .history:empty::before{content:"memes you make show up here";font-family:var(--hand);font-size:18px;color:#888}
 
