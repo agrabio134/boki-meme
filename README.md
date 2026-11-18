@@ -13,8 +13,7 @@ const CONFIG = {
   CA: "COMING SOON",
   BUY_URL: "#buy",
   CHART_URL: "#",
-  X_URL: "#",
-  TG_URL: "#"
+  X_URL: "#"
 };
 ```
 

@@ -406,7 +406,6 @@ footer{background:var(--ink);color:#fff;padding:clamp(60px,9vw,110px) clamp(16px
   <div class="foot-big">BOKI gave up.<br><em>You</em> don't have to.</div>
   <div class="foot-row">
     <a class="btn sm js-x" href="#" target="_blank" rel="noopener">X / Twitter ↗</a>
-    <a class="btn sm js-tg" href="#" target="_blank" rel="noopener">Telegram ↗</a>
     <a class="btn sm js-chart" href="#" target="_blank" rel="noopener">Chart ↗</a>
     <a class="btn sm js-buy" href="#" target="_blank" rel="noopener">Buy ↗</a>
   </div>
@@ -432,7 +431,6 @@ const CONFIG = {
   BUY_URL: "#buy",             // e.g. pump.fun / jup.ag link
   CHART_URL: "#",              // e.g. dexscreener link
   X_URL: "https://x.com/boki_on_pump", // X / Twitter
-  TG_URL: "#"                  // Telegram
 };
 /* ======================================================= */
 
@@ -446,7 +444,6 @@ $('#caFull').textContent = CONFIG.CA;
 $$('.js-ca-short').forEach(e=>e.textContent = CONFIG.CA.length>14 ? CONFIG.CA.slice(0,4)+'…'+CONFIG.CA.slice(-4) : CONFIG.CA);
 $$('.js-chart').forEach(a=>a.href=CONFIG.CHART_URL);
 $$('.js-x').forEach(a=>a.href=CONFIG.X_URL);
-$$('.js-tg').forEach(a=>a.href=CONFIG.TG_URL);
 $$('.js-buy').forEach(a=>{a.href=CONFIG.BUY_URL; if(CONFIG.BUY_URL.startsWith('#')) a.removeAttribute('target')});
 $$('.js-copy-ca').forEach(b=>b.addEventListener('click',async()=>{
   try{await navigator.clipboard.writeText(CONFIG.CA);toast('CA copied. BOKI is mildly impressed.')}catch(e){toast('Copy blocked — select the CA and copy it manually')}
