@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$BOKI — sent to study humanity. gave up.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Gaegu:wght@400;700&family=JetBrains+Mono:wght@400;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky:#C9F9FD; --sky2:#A8EEF6; --green:#4C8A05; --green2:#3A6B03; --ink:#0B0B0B;
+  --paper:#FFFDF4; --red:#FF3B2F; --yellow:#FFE14A;
+  --display:'Anton',Impact,sans-serif; --hand:'Gaegu',cursive; --mono:'JetBrains Mono',monospace; --body:'Space Grotesk',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--sky);color:var(--ink);font-family:var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+::selection{background:var(--green);color:#fff}
+
+/* ---------- NAV ---------- */
+.nav{position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;display:flex;align-items:center;gap:20px;padding:10px clamp(14px,3vw,36px)}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:26px;letter-spacing:.5px;text-decoration:none}
+.logo img{width:36px;height:36px;border-radius:50%;border:2px solid #fff;object-fit:cover;object-position:50% 80%;background:var(--sky)}
+.nav nav{display:flex;gap:22px;margin-left:auto;font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:1px}
+.nav nav a{text-decoration:none;opacity:.8}
+.nav nav a:hover{opacity:1;color:var(--sky)}
+.ca-chip{display:flex;align-items:center;gap:8px;background:var(--green);color:#fff;border:2px solid #fff;border-radius:999px;padding:7px 14px;font-family:var(--mono);font-size:12px;font-weight:700;white-space:nowrap}
+.ca-chip:hover{background:#fff;color:var(--ink)}
+@media (max-width:760px){.nav nav{display:none}.ca-chip{margin-left:auto}}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:calc(100vh - 56px);min-height:calc(100svh - 56px);overflow:hidden;display:flex;flex-direction:column;align-items:center;
+  background:radial-gradient(ellipse at 50% 110%, #E6FDFF 0%, var(--sky) 55%, var(--sky2) 100%)}
+.hero-word{position:absolute;left:50%;top:clamp(80px,13vh,140px);transform:translateX(-50%);font-family:var(--display);font-size:clamp(150px,34vw,520px);line-height:.8;letter-spacing:-.01em;color:var(--ink);user-select:none;white-space:nowrap}
+.hero-word span{display:inline-block;animation:drop .9s cubic-bezier(.2,1.4,.4,1) both}
+.hero-word span:nth-child(2){animation-delay:.08s}.hero-word span:nth-child(3){animation-delay:.16s}.hero-word span:nth-child(4){animation-delay:.24s}
+@keyframes drop{from{transform:translateY(-120%) rotate(-8deg);opacity:0}to{transform:none;opacity:1}}
+.hero-cap{position:relative;z-index:3;margin-top:22px;background:var(--ink);color:#fff;font-family:var(--display);font-size:clamp(20px,2.6vw,34px);padding:10px 22px;text-align:center;line-height:1.1;transform:rotate(-1.2deg);box-shadow:6px 6px 0 var(--green)}
+.boki-hero{position:absolute;bottom:-4px;left:50%;width:min(860px,96vw);transform-origin:50% 100%;z-index:2;pointer-events:none}
+.boki-hero img{width:100%;animation:bob 4s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes bob{0%,100%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-10px) scaleY(1.015)}}
+.note{position:absolute;z-index:4;font-family:var(--hand);font-weight:700;font-size:clamp(20px,2vw,30px);line-height:1;color:var(--ink);display:flex;align-items:center;gap:6px}
+.note svg{width:70px;height:40px;stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round}
+.note.n1{left:6%;bottom:44%;transform:rotate(-6deg)}
+.note.n2{right:5%;bottom:52%;transform:rotate(5deg)}
+.note.n3{right:7%;bottom:22%;transform:rotate(-3deg);color:var(--red)}
+@media (max-width:900px){.note{display:none}}
+.hero-ctas{position:absolute;z-index:5;bottom:28px;left:50%;transform:translateX(-50%);display:flex;gap:12px;flex-wrap:wrap;justify-content:center;width:max-content;max-width:92vw}
+.btn{font-family:var(--display);font-size:22px;letter-spacing:.5px;padding:14px 26px;border:3px solid var(--ink);background:#fff;color:var(--ink);box-shadow:5px 5px 0 var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:transform .12s, box-shadow .12s;text-transform:uppercase}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.btn:active{transform:translate(4px,4px);box-shadow:1px 1px 0 var(--ink)}
+.btn.g{background:var(--green);color:#fff}
+.btn.k{background:var(--ink);color:#fff;box-shadow:5px 5px 0 var(--green)}
+.btn.sm{font-size:16px;padding:10px 16px;box-shadow:3px 3px 0 var(--ink)}
+
+/* ---------- MARQUEE ---------- */
+.marquee{background:var(--ink);color:#fff;overflow:hidden;border-block:3px solid var(--ink);position:relative;z-index:6}
+.marquee.alt{background:var(--green);transform:rotate(-1.5deg);margin:-14px -10px 0;border-color:var(--ink)}
+.mq-track{display:flex;width:max-content;animation:mq 38s linear infinite}
+.marquee.alt .mq-track{animation-duration:30s;animation-direction:reverse}
+.mq-track span{font-family:var(--display);font-size:clamp(22px,3vw,40px);padding:12px 0;white-space:nowrap;text-transform:uppercase}
+.mq-track i{font-style:normal;color:var(--sky);padding:0 22px}
+.marquee.alt i{color:var(--ink)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- SECTIONS ---------- */
+section{position:relative;padding:clamp(70px,10vw,130px) clamp(16px,4vw,56px)}
+.wrap{max-width:1240px;margin:0 auto}
+.kicker{font-family:var(--mono);font-size:13px;letter-spacing:2px;text-transform:uppercase;display:inline-flex;gap:10px;align-items:center;margin-bottom:18px}
+.kicker::before{content:"";width:10px;height:10px;background:var(--red);border-radius:50%;animation:blink 1.2s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(54px,9vw,140px);line-height:.88;text-transform:uppercase;letter-spacing:-.01em}
+h2 .bar{background:var(--ink);color:#fff;padding:0 .12em;display:inline-block;transform:rotate(-1deg)}
+.lead{font-size:clamp(17px,1.5vw,20px);line-height:1.5;max-width:560px;margin-top:18px}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s, transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- LORE ---------- */
+#lore{background:var(--paper);background-image:radial-gradient(rgba(0,0,0,.07) 1px,transparent 1px);background-size:22px 22px}
+.lore-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,5vw,70px);align-items:start;margin-top:50px}
+@media (max-width:900px){.lore-grid{grid-template-columns:1fr}}
+.story{display:flex;flex-direction:column;gap:22px}
+.story p{font-family:var(--display);font-size:clamp(30px,4.2vw,58px);line-height:1;text-transform:uppercase;align-self:flex-start;background:var(--ink);color:#fff;padding:10px 18px 12px;max-width:100%}
+.story p:nth-child(2){transform:rotate(1deg);align-self:flex-end;background:#fff;color:var(--ink);border:3px solid var(--ink)}
+.story p:nth-child(3){transform:rotate(-1.2deg);background:var(--green)}
+.story p:nth-child(4){position:relative;transform:rotate(.6deg);align-self:flex-end;background:var(--red)}
+.story p:nth-child(4) small{display:block;font-family:var(--hand);font-size:.5em;text-transform:none;font-weight:700;margin-top:4px}
+.log{background:var(--ink);color:#d8ffe0;font-family:var(--mono);font-size:14px;border:3px solid var(--ink);box-shadow:10px 10px 0 var(--green);position:sticky;top:90px}
+.log-head{display:flex;justify-content:space-between;padding:12px 16px;border-bottom:1px dashed #3a3a3a;color:#fff;font-weight:800;letter-spacing:1px;font-size:12px}
+.log-head b{color:var(--red)}
+.log ol{list-style:none;padding:8px 16px 4px}
+.log li{display:grid;grid-template-columns:78px 1fr;gap:10px;padding:9px 0;border-bottom:1px dashed #262626;opacity:0;transform:translateX(-10px);transition:.4s}
+.log li.on{opacity:1;transform:none}
+.log li time{color:var(--sky)}
+.log li.end{color:var(--red);font-weight:800}
+.meter{padding:14px 16px 18px}
+.meter-l{display:flex;justify-content:space-between;font-size:11px;letter-spacing:1px;color:#aaa;margin-bottom:6px}
+.meter-b{height:16px;border:2px solid #fff;padding:2px}
+.meter-f{height:100%;background:var(--green);width:100%;transition:width .5s, background .5s}
+.stamp{position:absolute;right:18px;bottom:64px;font-family:var(--display);font-size:46px;color:var(--red);border:5px solid var(--red);padding:2px 14px;transform:rotate(-14deg) scale(2.4);opacity:0;transition:transform .35s cubic-bezier(.3,1.6,.5,1), opacity .2s;pointer-events:none;letter-spacing:2px;mix-blend-mode:screen}
+.stamp.on{opacity:1;transform:rotate(-14deg) scale(1)}
+.studying{margin-top:60px;display:flex;flex-wrap:wrap;align-items:center;gap:18px;border:3px dashed var(--ink);padding:22px 26px;background:#fff}
+.studying .t{font-family:var(--display);font-size:clamp(40px,6vw,74px);line-height:1;font-variant-numeric:tabular-nums}
+.studying .l{font-family:var(--hand);font-size:clamp(22px,2.4vw,30px);font-weight:700;line-height:1.05;flex:1;min-width:220px}
+
+/* ---------- STATS ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-block:3px solid var(--ink);background:var(--sky)}
+.stat{padding:34px 22px;border-right:3px solid var(--ink)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-family:var(--display);font-size:clamp(54px,7vw,100px);line-height:.9;font-weight:400}
+.stat span{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:1.5px}
+@media (max-width:760px){.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:3px solid var(--ink)}}
+
+/* ---------- SIGHTINGS ---------- */
+#sightings{background:var(--green);color:#fff;overflow:hidden}
+#sightings h2 .bar{background:#fff;color:var(--ink)}
+#sightings .kicker::before{background:#fff}
+.sight-grid{columns:4 260px;column-gap:22px;margin-top:56px}
+.card{break-inside:avoid;margin-bottom:26px;background:var(--paper);color:var(--ink);padding:10px 10px 14px;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);cursor:zoom-in;transition:transform .2s;position:relative}
+.card:nth-child(3n+1){transform:rotate(-1.6deg)}
+.card:nth-child(3n+2){transform:rotate(1.2deg)}
+.card:nth-child(4n){transform:rotate(-.6deg)}
+.card:hover{transform:rotate(0) scale(1.03);z-index:2}
+.card img{width:100%;border:2px solid var(--ink);background:#ddd}
+.card .id{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:1px;margin:10px 2px 4px;text-transform:uppercase}
+.card .id em{font-style:normal;color:var(--red)}
+.card p{font-family:var(--hand);font-size:22px;line-height:1.05;font-weight:700;margin:0 2px}
+.tape{position:absolute;top:-12px;left:50%;width:90px;height:24px;background:rgba(255,241,160,.85);transform:translateX(-50%) rotate(-4deg);border:1px solid rgba(0,0,0,.1)}
+
+.lightbox{position:fixed;inset:0;background:rgba(11,11,11,.92);z-index:100;display:none;align-items:center;justify-content:center;padding:20px;flex-direction:column;gap:16px}
+.lightbox.on{display:flex}
+.lightbox img{max-height:76vh;max-width:92vw;border:4px solid #fff}
+.lightbox .lb-cap{color:#fff;font-family:var(--hand);font-size:26px;font-weight:700;text-align:center;max-width:680px}
+.lightbox .lb-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.lb-x{position:absolute;top:14px;right:18px;color:#fff;font-family:var(--display);font-size:34px}
+
+/* ---------- MEME LAB ---------- */
+#lab{background:var(--sky)}
+.lab{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(20px,3vw,40px);margin-top:46px;align-items:start}
+@media (max-width:960px){.lab{grid-template-columns:1fr}}
+.stage{position:sticky;top:84px;background:var(--ink);padding:14px;box-shadow:10px 10px 0 var(--green)}
+@media (max-width:960px){.stage{position:relative;top:0}}
+.stage-top{display:flex;justify-content:space-between;color:#fff;font-family:var(--mono);font-size:12px;letter-spacing:1px;margin-bottom:10px;font-weight:700}
+.stage-top b{color:var(--sky)}
+#preview{width:100%;aspect-ratio:1;background:#222;display:block;image-rendering:auto}
+.stage-hint{color:#999;font-family:var(--mono);font-size:11px;margin-top:10px;text-align:center}
+.panel{background:#fff;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink)}
+.pblock{padding:18px 20px;border-bottom:3px solid var(--ink)}
+.pblock:last-child{border-bottom:0}
+.plabel{font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.plabel span{color:#777;font-weight:400}
+.gen-row{display:grid;grid-template-columns:1fr auto;gap:10px}
+.gen{font-family:var(--display);font-size:clamp(26px,3vw,36px);background:var(--green);color:#fff;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:14px 10px;text-transform:uppercase;transition:transform .1s, box-shadow .1s;display:flex;align-items:center;justify-content:center;gap:12px}
+.gen:active{transform:translate(4px,4px);box-shadow:1px 1px 0 var(--ink)}
+.gen.chaos{background:var(--ink);font-size:20px;padding:14px 18px}
+.gen .dice{display:inline-block;transition:transform .4s}
+.gen:hover .dice{transform:rotate(180deg)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--mono);font-size:12px;font-weight:700;padding:7px 12px;border:2px solid var(--ink);background:#fff;text-transform:uppercase;letter-spacing:.5px}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff}
+.chip:hover{background:var(--sky)}
+.chip[aria-pressed="true"]:hover{background:var(--ink)}
+textarea{width:100%;font-family:var(--body);font-weight:500;font-size:16px;border:2px solid var(--ink);padding:10px 12px;resize:vertical;min-height:52px;background:var(--paper);outline:none}
+textarea:focus{background:#fff;box-shadow:3px 3px 0 var(--green)}
+.tx{display:grid;gap:8px}
+.tx label{font-family:var(--mono);font-size:11px;color:#666}
+.bases{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:8px}
+.base{aspect-ratio:1;border:2px solid var(--ink);overflow:hidden;position:relative;background:var(--sky)}
+.base img{width:100%;height:100%;object-fit:cover}
+.base[aria-pressed="true"]{outline:4px solid var(--green);outline-offset:-4px}
+.base[aria-pressed="true"]::after{content:"✓";position:absolute;top:2px;right:4px;font-family:var(--display);color:#fff;background:var(--green);width:20px;height:20px;display:grid;place-items:center;font-size:13px;border-radius:50%}
+.base.up{display:grid;place-items:center;font-family:var(--display);font-size:13px;background:var(--paper);text-align:center;line-height:1.1;padding:4px}
+.toggles{display:flex;flex-wrap:wrap;gap:16px}
+.tog{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;font-weight:700;text-transform:uppercase;cursor:pointer;user-select:none}
+.tog input{appearance:none;width:40px;height:22px;border:2px solid var(--ink);border-radius:20px;position:relative;background:#eee;cursor:pointer;transition:.2s}
+.tog input::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:var(--ink);transition:.2s}
+.tog input:checked{background:var(--green)}
+.tog input:checked::after{left:20px;background:#fff}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,140%);opacity:0;visibility:hidden;background:var(--ink);color:#fff;font-family:var(--mono);font-weight:700;font-size:13px;padding:12px 18px;border:2px solid #fff;z-index:200;transition:transform .3s cubic-bezier(.2,1.4,.4,1)}
+.toast.on{transform:translate(-50%,0);opacity:1;visibility:visible}
+.history{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+.history img{width:56px;height:56px;border:2px solid var(--ink);flex:0 0 auto;cursor:pointer;object-fit:cover}
+.history:empty::before{content:"memes you make show up here";font-family:var(--hand);font-size:18px;color:#888}
+
+/* ---------- BUY ---------- */
+#buy{background:var(--paper)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:50px}
+@media (max-width:960px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+.step{border:3px solid var(--ink);background:#fff;box-shadow:6px 6px 0 var(--ink)}
+.step .sh{background:var(--ink);color:#fff;font-family:var(--display);font-size:26px;padding:10px 16px;display:flex;justify-content:space-between;text-transform:uppercase}
+.step .sh i{font-style:normal;color:var(--sky)}
+.step p{padding:16px;font-size:16px;line-height:1.45}
+.step .boki-says{font-family:var(--hand);font-size:20px;font-weight:700;color:var(--green2);padding:0 16px 16px;line-height:1}
+.ca-big{margin-top:40px;display:flex;flex-wrap:wrap;gap:12px;align-items:stretch}
+.ca-big code{flex:1;min-width:260px;font-family:var(--mono);font-size:clamp(13px,1.4vw,17px);font-weight:700;background:var(--ink);color:var(--sky);padding:18px 20px;border:3px solid var(--ink);overflow-wrap:anywhere;display:flex;align-items:center}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--ink);color:#fff;padding:clamp(60px,9vw,110px) clamp(16px,4vw,56px) 30px;position:relative;overflow:hidden}
+.foot-big{font-family:var(--display);font-size:clamp(56px,11vw,180px);line-height:.86;text-transform:uppercase}
+.foot-big em{font-style:normal;color:var(--green);-webkit-text-stroke:2px #fff}
+.foot-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
+.foot-row .btn{background:transparent;color:#fff;border-color:#fff;box-shadow:4px 4px 0 var(--green)}
+.disc{margin-top:60px;font-family:var(--mono);font-size:11px;line-height:1.7;color:#8a8a8a;max-width:820px}
+.foot-boki{position:absolute;right:-30px;bottom:-10px;width:min(380px,40vw);opacity:.95;transform:rotate(-8deg)}
+@media (max-width:700px){.foot-boki{opacity:.25}}
+
+/* ---------- PEEK ---------- */
+.peek{position:fixed;right:22px;bottom:0;width:130px;z-index:60;transform:translateY(62%);transition:transform .5s cubic-bezier(.2,1.4,.4,1);cursor:pointer}
+.peek:hover,.peek.up{transform:translateY(30%)}
+.peek.gone{transform:translateY(110%)}
+.peek img{width:100%;filter:drop-shadow(0 -2px 0 rgba(0,0,0,.08))}
+.bubble{position:fixed;right:30px;bottom:118px;z-index:61;background:#fff;border:3px solid var(--ink);padding:10px 14px;font-family:var(--hand);font-weight:700;font-size:20px;max-width:230px;line-height:1.05;box-shadow:4px 4px 0 var(--ink);opacity:0;transform:translateY(10px) scale(.9);transform-origin:90% 100%;transition:.25s;pointer-events:none}
+.bubble::after{content:"";position:absolute;bottom:-14px;right:44px;border:12px solid transparent;border-top-color:var(--ink);border-bottom:0}
+.bubble.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a class="logo" href="#top"><img src="assets/boki.png" alt="">$BOKI</a>
+  <nav><a href="#lore">Lore</a><a href="#sightings">Sightings</a><a href="#lab">Meme Lab</a><a href="#buy">Get $BOKI</a></nav>
+  <button class="ca-chip js-copy-ca" title="Copy contract address">CA: <span class="js-ca-short">…</span> ⧉</button>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero" style="padding:0">
+  <div class="hero-word" aria-hidden="true"><span>B</span><span>O</span><span>K</span><span>I</span></div>
+  <h1 class="hero-cap">Nobody knows where BOKI came from.</h1>
+  <div class="note n1">him <svg viewBox="0 0 70 40"><path d="M4 8 C 30 4, 50 14, 64 30 M64 30 l-12 -2 M64 30 l-2 -12"/></svg></div>
+  <div class="note n2"><svg viewBox="0 0 70 40" style="transform:scaleX(-1)"><path d="M4 8 C 30 4, 50 14, 64 30 M64 30 l-12 -2 M64 30 l-2 -12"/></svg>sent to study<br>humanity</div>
+  <div class="note n3">gave up after<br>3 minutes</div>
+  <div class="boki-hero" id="bokiHero"><img src="assets/boki-cut.png" alt="BOKI, a round green creature, looking at you"></div>
+  <div class="hero-ctas">
+    <a class="btn g js-buy" href="#buy">Buy $BOKI</a>
+    <a class="btn k" href="#lab">Make a meme ⟶</a>
+  </div>
+</section>
+
+<div class="marquee"><div class="mq-track"><span>
+  Nobody knows where BOKI came from<i>✦</i>He just appeared on the internet one day<i>✦</i>Sent to Earth to study humanity<i>✦</i>After three minutes, he gave up<i>✦</i>$BOKI<i>✦</i>
+  Nobody knows where BOKI came from<i>✦</i>He just appeared on the internet one day<i>✦</i>Sent to Earth to study humanity<i>✦</i>After three minutes, he gave up<i>✦</i>$BOKI<i>✦</i>
+</span></div></div>
+
+<!-- LORE -->
+<section id="lore">
+  <div class="wrap">
+    <div class="kicker">Case file · Origin unknown</div>
+    <h2>The <span class="bar">mission</span></h2>
+    <div class="lore-grid">
+      <div class="story">
+        <p class="reveal">Nobody knows where BOKI came from.</p>
+        <p class="reveal">He just appeared on the internet one day.</p>
+        <p class="reveal">BOKI was sent to Earth to study humanity.</p>
+        <p class="reveal">After three minutes, he gave up.<small>honestly, fair.</small></p>
+      </div>
+      <div class="log" id="log">
+        <div class="log-head"><span>MISSION LOG // AGENT: BOKI</span><b>● REC</b></div>
+        <ol>
+          <li><time>T+00:00</time><span>Landed. On the internet. Confusing place.</span></li>
+          <li><time>T+00:24</time><span>Observed humans buying a coin named after a dog.</span></li>
+          <li><time>T+00:51</time><span>Observed humans buying a coin named after the dog's hat.</span></li>
+          <li><time>T+01:20</time><span>Human called a chart going straight down "healthy consolidation".</span></li>
+          <li><time>T+01:47</time><span>Human said "gm" to 4,000 strangers. Received 4,000 "gm"s. Nobody knows why.</span></li>
+          <li><time>T+02:15</time><span>Human said "not financial advice", then gave financial advice.</span></li>
+          <li><time>T+02:41</time><span>Attempted to understand what a "CTO" is. The CTO needed another CTO.</span></li>
+          <li class="end"><time>T+03:00</time><span>Mission abandoned. Requesting nap.</span></li>
+        </ol>
+        <div class="meter">
+          <div class="meter-l"><span>INTEREST IN HUMANITY</span><span id="meterPct">100%</span></div>
+          <div class="meter-b"><div class="meter-f" id="meterF"></div></div>
+        </div>
+        <div class="stamp" id="stamp">GAVE UP</div>
+      </div>
+    </div>
+    <div class="studying reveal">
+      <div class="t" id="studyT">0:00</div>
+      <div class="l" id="studyL">BOKI has been studying <u>you</u> since you opened this page. He'll give it 3 minutes. Same as everyone.</div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><b>3</b><span>Minutes spent studying humanity</span></div>
+  <div class="stat"><b>0</b><span>Conclusions reached</span></div>
+  <div class="stat"><b>8B</b><span>Humans left unstudied</span></div>
+  <div class="stat"><b>∞</b><span>Naps since</span></div>
+</div>
+
+<!-- SIGHTINGS -->
+<section id="sightings">
+  <div class="wrap">
+    <div class="kicker">Evidence locker · Unverified</div>
+    <h2>Confirmed <span class="bar">sightings</span></h2>
+    <p class="lead">Since he gave up, BOKI has been spotted all over the internet. He does not appear to be studying anything.</p>
+    <div class="sight-grid" id="grid"></div>
+  </div>
+</section>
+
+<div class="marquee alt"><div class="mq-track"><span>
+  Make a meme<i>✦</i>BOKI won't<i>✦</i>He gave up<i>✦</i>You still can<i>✦</i>Make a meme<i>✦</i>BOKI won't<i>✦</i>He gave up<i>✦</i>You still can<i>✦</i>
+  Make a meme<i>✦</i>BOKI won't<i>✦</i>He gave up<i>✦</i>You still can<i>✦</i>Make a meme<i>✦</i>BOKI won't<i>✦</i>He gave up<i>✦</i>You still can<i>✦</i>
+</span></div></div>
+
+<!-- MEME LAB -->
+<section id="lab">
+  <div class="wrap">
+    <div class="kicker">Meme lab · Thousands of combos</div>
+    <h2>Meme <span class="bar">lab</span></h2>
+    <p class="lead">Hit generate. Get a fresh BOKI meme. Change the words, the layout or the picture until it's perfect, then save it and post it.</p>
+
+    <div class="lab">
+      <div class="stage">
+        <div class="stage-top"><span>BOKI_MEME_<b id="memeNo">0001</b>.PNG</span><span id="layoutName">CAPTION BAR</span></div>
+        <img id="preview" alt="Your BOKI meme preview">
+        <div class="stage-hint">tip: long-press or right-click the meme to save it straight from here</div>
+      </div>
+
+      <div class="panel">
+        <div class="pblock">
+          <div class="plabel">Generate <span id="genCount">0 generated</span></div>
+          <div class="gen-row">
+            <button class="gen" id="genBtn"><span class="dice">🎲</span> Generate</button>
+            <button class="gen chaos" id="chaosBtn" title="Random caption, layout and picture">Chaos</button>
+          </div>
+          <div class="chips" id="cats" style="margin-top:14px"></div>
+        </div>
+        <div class="pblock tx">
+          <div class="plabel">Words <span>edit anything</span></div>
+          <label for="topT">TOP / MAIN</label>
+          <textarea id="topT" rows="2"></textarea>
+          <label for="botT">BOTTOM / PUNCHLINE</label>
+          <textarea id="botT" rows="2"></textarea>
+        </div>
+        <div class="pblock">
+          <div class="plabel">Layout</div>
+          <div class="chips" id="layouts"></div>
+        </div>
+        <div class="pblock">
+          <div class="plabel">Picture <span>or upload your own</span></div>
+          <div class="bases" id="bases"></div>
+          <input type="file" id="upload" accept="image/*" hidden>
+        </div>
+        <div class="pblock">
+          <div class="toggles">
+            <label class="tog"><input type="checkbox" id="fry"> Deep fry</label>
+            <label class="tog"><input type="checkbox" id="wm" checked> $BOKI tag</label>
+            <label class="tog"><input type="checkbox" id="caps"> ALL CAPS</label>
+          </div>
+        </div>
+        <div class="pblock">
+          <div class="actions">
+            <button class="btn g sm" id="dlBtn">⬇ Save PNG</button>
+            <button class="btn sm" id="copyBtn">⧉ Copy image</button>
+            <a class="btn k sm" id="xBtn" href="https://x.com/intent/post?text=%24BOKI" target="_blank" rel="noopener">Post on X ↗</a>
+          </div>
+        </div>
+        <div class="pblock">
+          <div class="plabel">This session <span>click to reload</span></div>
+          <div class="history" id="history"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUY -->
+<section id="buy">
+  <div class="wrap">
+    <div class="kicker">Field manual · 4 steps</div>
+    <h2>Get <span class="bar">$BOKI</span></h2>
+    <div class="steps">
+      <div class="step reveal"><div class="sh">Wallet <i>01</i></div><p>Download a crypto wallet like Phantom from its official site and write down your recovery phrase. Somewhere safe. Not a sticky note.</p><div class="boki-says">boki: i don't have pockets</div></div>
+      <div class="step reveal"><div class="sh">Fund it <i>02</i></div><p>Buy SOL on an exchange and send it to your wallet. Keep a little extra for fees.</p><div class="boki-says">boki: what's a fee</div></div>
+      <div class="step reveal"><div class="sh">Copy the CA <i>03</i></div><p>Copy the official contract address below. Only trust the one on this site. Fake BOKIs are everywhere.</p><div class="boki-says">boki: there's only one of me. i checked.</div></div>
+      <div class="step reveal"><div class="sh">Swap <i>04</i></div><p>Paste the CA into your DEX of choice, swap SOL for $BOKI, confirm. Welcome. Please don't study us.</p><div class="boki-says">boki: ok that took 3 minutes. i'm done.</div></div>
+    </div>
+    <div class="ca-big">
+      <code id="caFull">CA</code>
+      <button class="btn g js-copy-ca">Copy CA</button>
+      <a class="btn js-chart" href="#" target="_blank" rel="noopener">Chart ↗</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="foot-big">BOKI gave up.<br><em>You</em> don't have to.</div>
+  <div class="foot-row">
+    <a class="btn sm js-x" href="#" target="_blank" rel="noopener">X / Twitter ↗</a>
+    <a class="btn sm js-tg" href="#" target="_blank" rel="noopener">Telegram ↗</a>
+    <a class="btn sm js-chart" href="#" target="_blank" rel="noopener">Chart ↗</a>
+    <a class="btn sm js-buy" href="#" target="_blank" rel="noopener">Buy ↗</a>
+  </div>
+  <p class="disc">$BOKI is a memecoin with no intrinsic value and no expectation of financial return. There is no team roadmap, no promises, and no formal plan. BOKI is not financial advice. BOKI is not paying attention. Crypto is risky: only spend what you can afford to lose, and always check the contract address.</p>
+  <img class="foot-boki" src="assets/boki-cut.png" alt="">
+</footer>
+
+<div class="lightbox" id="lb" role="dialog" aria-modal="true">
+  <button class="lb-x" id="lbX" aria-label="Close">✕</button>
+  <img id="lbImg" alt="">
+  <div class="lb-cap" id="lbCap"></div>
+  <div class="lb-row"><button class="btn g sm" id="lbRemix">Remix in Meme Lab</button></div>
+</div>
+
+<div class="peek" id="peek" title="poke BOKI"><img src="assets/boki-cut.png" alt="BOKI peeking"></div>
+<div class="bubble" id="bubble"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================= CONFIG — edit these ================= */
+const CONFIG = {
+  CA: "COMING SOON",           // paste the real contract address here
+  BUY_URL: "#buy",             // e.g. pump.fun / jup.ag link
+  CHART_URL: "#",              // e.g. dexscreener link
+  X_URL: "#",                  // X / Twitter
+  TG_URL: "#"                  // Telegram
+};
+/* ======================================================= */
+
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const rand = a => a[Math.floor(Math.random()*a.length)];
+const ri = (a,b) => a + Math.floor(Math.random()*(b-a+1));
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2200)}
+
+/* ---- links & CA ---- */
+$('#caFull').textContent = CONFIG.CA;
+$$('.js-ca-short').forEach(e=>e.textContent = CONFIG.CA.length>14 ? CONFIG.CA.slice(0,4)+'…'+CONFIG.CA.slice(-4) : CONFIG.CA);
+$$('.js-chart').forEach(a=>a.href=CONFIG.CHART_URL);
+$$('.js-x').forEach(a=>a.href=CONFIG.X_URL);
+$$('.js-tg').forEach(a=>a.href=CONFIG.TG_URL);
+$$('.js-buy').forEach(a=>{a.href=CONFIG.BUY_URL; if(CONFIG.BUY_URL.startsWith('#')) a.removeAttribute('target')});
+$$('.js-copy-ca').forEach(b=>b.addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(CONFIG.CA);toast('CA copied. BOKI is mildly impressed.')}catch(e){toast('Copy blocked — select the CA and copy it manually')}
+}));
+
+/* ---- reveal ---- */
+const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+$$('.reveal').forEach(el=>io.observe(el));
+
+/* ---- hero tilt ---- */
+const hero = $('#bokiHero');
+let tx=0, cur=0;
+addEventListener('pointermove',e=>{tx=(e.clientX/innerWidth-.5)*6});
+(function loop(){cur+=(tx-cur)*.08;hero.style.transform=`translateX(-50%) rotate(${cur}deg)`;requestAnimationFrame(loop)})();
+
+/* ---- mission log ---- */
+const logIO = new IntersectionObserver(es=>{
+  if(!es[0].isIntersecting) return; logIO.disconnect();
+  const lis=$$('#log li'); const n=lis.length;
+  lis.forEach((li,i)=>setTimeout(()=>{
+    li.classList.add('on');
+    const pct=Math.round(100*(1-(i+1)/n));
+    $('#meterF').style.width=pct+'%'; $('#meterPct').textContent=pct+'%';
+    if(pct<40) $('#meterF').style.background='var(--red)';
+    if(i===n-1) setTimeout(()=>$('#stamp').classList.add('on'),350);
+  },500+i*650));
+},{threshold:.35});
+logIO.observe($('#log'));
+
+/* ---- studying timer + peek ---- */
+const start=Date.now(); let gaveUp=false;
+const peek=$('#peek'), bubble=$('#bubble');
+function say(t,ms=2600){bubble.textContent=t;bubble.classList.add('on');peek.classList.add('up');clearTimeout(say._t);say._t=setTimeout(()=>{bubble.classList.remove('on');peek.classList.remove('up')},ms)}
+setInterval(()=>{
+  const s=Math.floor((Date.now()-start)/1000);
+  if(s<180){$('#studyT').textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+  else if(!gaveUp){gaveUp=true;$('#studyT').textContent='3:00';$('#studyL').innerHTML='BOKI studied you for 3 minutes. <b style="color:var(--red)">He gave up.</b> Nothing personal. He does this to everyone.';
+    say("ok i studied you for 3 minutes. i give up. bye.",3500);setTimeout(()=>peek.classList.add('gone'),3800);setTimeout(()=>{peek.classList.remove('gone');say('jk i live here now')},14000)}
+  if(s===20) say('hi. i am studying you.');
+  if(s===75) say('still studying. you scroll a lot.');
+  if(s===140) say('40 seconds left. not looking good.');
+},1000);
+const pokes=["stop poking me","i'm on break","what is a 'roadmap'","humans are so loud","i came here to study you. it went badly.","have you tried giving up? it's nice.","no thoughts. just BOKI.","the mothership isn't answering my texts","3 minutes was generous","i'm not a frog. i don't know what i am.","you again?","wen nap"];
+let pi=0; peek.addEventListener('click',()=>say(pokes[pi++%pokes.length]));
+
+/* ================= SIGHTINGS ================= */
+const SIGHTINGS = [
+  {src:'assets/s7.jpg', loc:'Arrival', cap:'Original arrival footage. Mission start: T+00:00.'},
+  {src:'assets/s1.jpg', loc:'Back alley', cap:'Subject counting rent money he should absolutely not ape.'},
+  {src:'assets/meme1.jpg', loc:'Group chat', cap:'Friend sent a CA. You know the rest.', meme:true},
+  {src:'assets/s3.jpg', loc:'Minute 3', cap:'Subject located the exit.'},
+  {src:'assets/s4.jpg', loc:'The simulation', cap:'Subject saw the code. Was not impressed.'},
+  {src:'assets/s2.jpg', loc:'Tropical island', cap:"Subject's response to the dev's roadmap."},
+  {src:'assets/meme2.jpg', loc:'Full port', cap:'The KOL had a bundler. The KOL always has a bundler.', meme:true},
+  {src:'assets/s5.jpg', loc:'The beach', cap:'Waiting for the bull run. Brought a scarf, just in case.'},
+  {src:'assets/s6.jpg', loc:'Undisclosed office', cap:'Subject after one (1) good trade.'},
+  {src:'assets/meme3.jpg', loc:'Sell button', cap:'Classic human behavior. Subject studied it for 0.3 seconds.', meme:true},
+  {src:'assets/s8.jpg', loc:'Rock, coast', cap:'Subject made one human friend. It was a monkey.'},
+  {src:'assets/s9.jpg', loc:'Rooftop, NYC', cap:"Subject's stop loss, apparently."},
+  {src:'assets/meme4.jpg', loc:'Community', cap:'When the CTO needs another CTO.', meme:true},
+];
+const grid=$('#grid');
+SIGHTINGS.forEach((s,i)=>{
+  const c=document.createElement('figure');c.className='card reveal';
+  c.innerHTML=`<div class="tape"></div><img loading="lazy" src="${s.src}" alt="BOKI sighting: ${s.cap}"><div class="id"><span>Sighting #${String(i+1).padStart(3,'0')}</span><em>${s.loc}</em></div><p>${s.cap}</p>`;
+  c.addEventListener('click',()=>openLB(i));grid.appendChild(c);io.observe(c);
+});
+let lbIdx=0;
+function openLB(i){lbIdx=i;const s=SIGHTINGS[i];$('#lbImg').src=s.src;$('#lbCap').textContent=`#${String(i+1).padStart(3,'0')} · ${s.cap}`;$('#lbRemix').style.display=s.meme?'none':'';$('#lb').classList.add('on')}
+$('#lbX').onclick=()=>$('#lb').classList.remove('on');
+$('#lb').addEventListener('click',e=>{if(e.target.id==='lb')$('#lb').classList.remove('on')});
+addEventListener('keydown',e=>{if(!$('#lb').classList.contains('on'))return;
+  if(e.key==='Escape')$('#lb').classList.remove('on');
+  if(e.key==='ArrowRight')openLB((lbIdx+1)%SIGHTINGS.length);
+  if(e.key==='ArrowLeft')openLB((lbIdx-1+SIGHTINGS.length)%SIGHTINGS.length)});
+$('#lbRemix').onclick=()=>{const k=BASES.findIndex(b=>b.src===SIGHTINGS[lbIdx].src);if(k>=0)selectBase(k);$('#lb').classList.remove('on');$('#lab').scrollIntoView({behavior:'smooth'})};
+
+/* ================= CAPTION ENGINE ================= */
+const W = {
+  friend:["your friend","the group chat","a KOL with 400k followers","your barber","your uncle who 'does crypto'","a guy named Kyle","a random Telegram admin","your ex","your dentist","an anon with 12 followers","your coworker","the 'alpha' caller","a laser-eyes pfp","your little cousin","your landlord","a guy at the gym","a Discord mod","your Uber driver","a 17-year-old in Ohio","a stranger in the replies"],
+  buy:["buy in","ape your rent money","go full port","buy the exact top","sell your PS5 to buy in","ape without checking the chart","put your savings in","ape before reading the ticker","buy 'just a small bag'","use your lunch money","ape at 3am","max bid on vibes alone","buy because the logo was cute","DCA all the way down","take a loan for 'a quick flip'"],
+  rug:["the chart ends up rugging","the KOL dumps his bundler","the dev sells everything","liquidity disappears","the dev deletes his X account","it goes -94% in four minutes","the top holder is the dev's cousin","the website was made in 6 minutes","the chart becomes a staircase going down","the Telegram gets locked","the dev says 'just a small sell'","it was a honeypot","the 'community' was 4 bots","the CTO needs another CTO","the dev posts 'gn' and never returns"],
+  moon:["the coin does a 100x","it sends to 80M","it pumps 400% overnight","it flips the coin you held","it goes up the second you close the app","it becomes the #1 trending coin","your friend who stayed in buys a car","it does a 40x before lunch","the chart goes vertical"],
+  sell:["finally sell","paper hand at break-even","take profits like a responsible adult","sell to buy groceries","rotate into a 'safer' coin","sell to 'buy back lower'","panic sell at the bottom","sell half 'to be smart'"],
+  ticker:["$FROG","$BLOB","$GOO","$HAT","$NAP","$ROCK","$CHAIR","$DOGWIFSOCK","$MOON","$BEANS","$WIZARD","$UNC","$SLEEPY","$GRASS","$TOAST","$CAT2"],
+  human:["check the chart 400 times a day","call gambling 'investing'","say 'it's still early'","trust a guy with an anime pfp","buy coins named after dogs","refresh the portfolio at 3am","say 'not financial advice' and then give financial advice","set an alarm to buy a coin","hold a bag for 11 months 'for the tech'","argue with bots","say 'gm' to strangers","buy the top and call it 'conviction'","pay $40 in fees to save $3","say 'we're so back' every 9 minutes","spend 6 hours researching a coin and then buy a different one","post 'LFG' with no further detail","put 'CEO' in their bio","screenshot gains but never losses"],
+  reason:["the logo was cute","a stranger said so","the name was funny","I was bored","Mercury was in retrograde","my horoscope said 'take risks'","the frog looked at me","the ticker had my initials","it was 2am and I felt powerful","a guy on TikTok was very confident","the chart 'looked bullish' (it was a straight line)"],
+  tech:["a coin with a dog on it","a chart that only goes down","a 47-step airdrop farm","the 'buy' button","a hat that says 'WAGMI'","a Telegram bot that charges 1%","screenshots of gains","a group chat called 'alpha only'"],
+  chore:["be a person again","reply to emails","pretend you're fine","go outside","touch grass","pay rent","talk to people","check your portfolio"],
+  small:["answering one (1) email","standing up","making toast","opening the fridge","finding my phone","replying 'ok'","putting on socks","reading half a tweet"],
+  thought:["something embarrassing from 2014","the coin I sold too early","if fish get thirsty","whether BOKI is a frog","what the mothership is doing","my seed phrase (it's fine) (is it fine)","the one time I said 'you too' to a waiter"],
+  place:["the bathroom","a family dinner","a wedding","church","a job interview","the dentist chair","my cousin's graduation","a funeral (respectfully)"],
+  feel:["peace","nothing","mild confusion","a strong desire to nap","the urge to go home","zero thoughts","pure acceptance"]
+};
+const pct=()=>ri(63,99), mins=()=>ri(2,59), days=()=>ri(2,999), obs=()=>String(ri(1,9999)).padStart(4,'0');
+const ordn=n=>n+(['th','st','nd','rd'][(n%100>10&&n%100<14)?0:(n%10<4?n%10:0)]||'th');
+const cap1=t=>t?t[0].toUpperCase()+t.slice(1):t;
+const fill = s => s.replace(/\{(\w+)\}/g,(_,k)=>k==='pct'?pct():k==='m'?mins():k==='d'?days():k==='n'?obs():k==='hr'?ri(2,11):k==='ord'?ordn(ri(4,19)):rand(W[k]));
+
+const T = { // [top, bottom]
+  degen:[
+    ["When {friend} sends you a CA,","you {buy}, and {rug}."],
+    ["When you {buy}","and {rug}."],
+    ["When you {sell}","and {moon}."],
+    ["When you go full port on {ticker}","and {rug}."],
+    ["{friend} after calling {ticker}","'the next 1000x'."],
+    ["Me explaining to my family","why {ticker} is down {pct}%."],
+    ["POV: you {buy}","at the exact top."],
+    ["Day {d} of holding {ticker}.","Still early. Apparently."],
+    ["When the dev says 'just a small sell'","and the chart goes -{pct}%."],
+    ["Nobody:","{friend} at 3am: '{ticker} is the one bro'."],
+    ["When you check the chart after {m} minutes","and you're down {pct}%."],
+    ["When {ticker} pumps {pct}%","the day after you {sell}."],
+    ["Bought {ticker} because {reason}.","No further questions."],
+    ["When you set a stop loss","and {rug} anyway."],
+    ["Portfolio: -{pct}%.","Vibes: immaculate."],
+    ["When you finally {sell}","and {moon}."],
+    ["When {friend} says 'trust me bro'","and you, for some reason, trust him."],
+    ["Me checking {ticker} in {place}","like it's an emergency."],
+    ["When {friend} asks how your bags are","and you change the subject to the weather."],
+    ["When you {buy} on {friend}'s advice","and {rug}."],
+    ["Me after {rug}:","'it's fine, I'm in it for the tech.'"],
+    ["When the chart goes up {pct}%","and you only bought $4 worth."],
+    ["When you said 'I'll buy the dip'","and the dip kept dipping."],
+    ["When {friend} buys {ticker} at the bottom","and you bought it at the top."],
+    ["My portfolio:","a museum of coins that used to exist."]
+  ],
+  lore:[
+    ["BOKI after {m} seconds of watching humans","{human}."],
+    ["Humans: {human}.","BOKI: I'm going back."],
+    ["Field note #{n}:","humans {human}. Unclear why."],
+    ["When the mothership asks for a report","and all you wrote was 'they {human}'."],
+    ["BOKI when he discovers","humans {human}."],
+    ["Day 1 on Earth.","Minute 3: gave up."],
+    ["Alien technology: faster-than-light travel.","Human technology: {tech}."],
+    ["When BOKI realized humans {human},","he requested immediate extraction."],
+    ["Sent to study humanity.","Studied {tech} instead."],
+    ["BOKI trying to explain {tech}","to the mothership."],
+    ["Mission: understand humanity.","Progress: {feel}."],
+    ["BOKI watching a human {human}","for the {ord} time today."],
+    ["The mothership: 'what have you learned?'","BOKI: 'they {human}.'"],
+    ["BOKI when a human asks","'wen moon?'"],
+    ["Nobody knows where BOKI came from.","BOKI also doesn't know. He forgot."],
+    ["Studied humanity for 3 minutes.","Feeling: {feel}."],
+    ["BOKI's entire research paper:","'no.'"],
+    ["When BOKI hears someone say","'this time it's different.'"]
+  ],
+  life:[
+    ["When your alarm goes off","and you remember you have to {chore}."],
+    ["Me after {small}:","'I deserve a nap.'"],
+    ["When someone says","'let's hop on a quick call.'"],
+    ["When the group chat goes silent","right after you send a message."],
+    ["Me at 3am","thinking about {thought}."],
+    ["When you say 'I'll start Monday'","for the {ord} Monday in a row."],
+    ["When you make eye contact","through the microwave door."],
+    ["Me in {place}","thinking about {thought}."],
+    ["When someone asks","'so what do you do for work?'"],
+    ["When you wave back at someone","who was waving at the person behind you."],
+    ["Me after one (1) social interaction:","'I need to lie down for {hr} hours.'"],
+    ["When the waiter says 'enjoy your meal'","and you say 'you too'."],
+    ["My plans for the weekend:","exactly what BOKI does. Nothing."],
+    ["When you open the fridge for the {ord} time","hoping something new appeared."],
+    ["Me pretending to understand","the thing someone just explained twice."]
+  ]
+};
+const FIXED = [
+  ["When your friend sends you a CA, you buy in,","and the chart ends up rugging."],
+  ["When you go full port on a coin","and the KOL dumps his bundler."],
+  ["When you finally sell","and the coin does a 100x."],
+  ["When the CTO","needs another CTO."],
+  ["Me: I'm done with memecoins.","Also me, 4 minutes later:"],
+  ["Sir, this is a Wendy's.",""],
+  ["When the 'dev is based'","and then the dev is gone."],
+  ["When someone says 'it's a community coin'","and the community is you."],
+  ["When the Spaces host says 'big news soon'","and the big news is a new pfp."],
+  ["When the airdrop is","0.0004 of a token."],
+  ["When BOKI hears the word","'roadmap'."],
+  ["Bear market? Bull market?","BOKI market: nap."],
+  ["Me looking at my wallet","after 'just one more trade'."],
+  ["When the 'stealth launch'","was announced 9 times."],
+  ["When the influencer says 'not financial advice'","in his 14th paid post this week."]
+];
+const CATS=[['all','All'],['degen','Degen'],['lore','BOKI lore'],['life','Everyday'],['classic','Classics']];
+let cat='all'; const seen=new Set(); let genCount=0;
+function generate(){
+  for(let tries=0;tries<60;tries++){
+    let pool;
+    if(cat==='classic') pool=FIXED;
+    else if(cat==='all') pool=Math.random()<.12?FIXED:T[rand(['degen','degen','lore','lore','life'])];
+    else pool=T[cat];
+    const t=rand(pool); const top=cap1(fill(t[0])), bot=fill(t[1]); const key=top+'|'+bot;
+    if(!seen.has(key)||tries===59){seen.add(key);return [top,bot]}
+  }
+}
+const catBox=$('#cats');
+CATS.forEach(([k,l])=>{const b=document.createElement('button');b.className='chip';b.textContent=l;b.setAttribute('aria-pressed',k===cat);b.onclick=()=>{cat=k;$$('#cats .chip').forEach(x=>x.setAttribute('aria-pressed',x===b));doGenerate()};catBox.appendChild(b)});
+
+/* ================= MEME RENDERER ================= */
+const S=1080;
+const cv=document.createElement('canvas');cv.width=S;cv.height=S;const ctx=cv.getContext('2d');
+const BASES=[{src:'assets/boki.png',name:'PFP',pfp:true},...['s1','s2','s3','s4','s5','s6','s7','s8','s9'].map(n=>({src:`assets/${n}.jpg`,name:n}))];
+const LAYOUTS=[['bar','Caption bar'],['impact','Impact'],['bubble','Speech bubble'],['report','Field report'],['subtitle','Subtitle'],['split','Expectation / reality']];
+let state={layout:'bar',base:0,fry:false,wm:true,caps:false};
+const imgCache={};
+async function loadImg(src){
+  if(imgCache[src]) return imgCache[src];
+  let url=src;
+  if(!src.startsWith('data:')&&!src.startsWith('blob:')){try{const r=await fetch(src);url=URL.createObjectURL(await r.blob())}catch(e){}}
+  const im=new Image();im.src=url;await im.decode().catch(()=>{});imgCache[src]=im;return im;
+}
+function cover(im,x,y,w,h,ay=.5){
+  const r=Math.max(w/im.naturalWidth,h/im.naturalHeight), iw=im.naturalWidth*r, ih=im.naturalHeight*r;
+  ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();
+  ctx.drawImage(im,x+(w-iw)/2,y+(h-ih)*ay,iw,ih);ctx.restore();
+}
+function wrap(text,maxW){
+  const words=text.split(/\s+/).filter(Boolean),lines=[];let line='';
+  for(const w of words){const t=line?line+' '+w:w;if(ctx.measureText(t).width>maxW&&line){lines.push(line);line=w}else line=t}
+  if(line)lines.push(line);return lines;
+}
+function fit(text,font,maxW,maxLines,start,min){
+  let size=start,lines;
+  while(size>=min){ctx.font=font.replace('#',size);lines=wrap(text,maxW);if(lines.length<=maxLines&&lines.every(l=>ctx.measureText(l).width<=maxW))break;size-=4}
+  return {size,lines};
+}
+function cased(t){return state.caps?t.toUpperCase():t}
+function rr(x,y,w,h,r){ctx.beginPath();ctx.roundRect?ctx.roundRect(x,y,w,h,r):ctx.rect(x,y,w,h)}
+
+async function render(){
+  const top=cased($('#topT').value.trim()), bot=cased($('#botT').value.trim());
+  const all=[top,bot].filter(Boolean).join(' ');
+  const b=BASES[state.base]; const im=await loadImg(b.src);
+  const ay=b.pfp?1:(b.ay??.42);
+  ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,S,S);ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.lineJoin='round';
+  const L=state.layout;
+
+  if(L==='bar'){
+    const f=fit(all||' ','#px Anton',S-110,5,96,40); const lh=f.size*1.08;
+    const barH=Math.max(170,f.lines.length*lh+90);
+    cover(im,0,barH,S,S-barH,ay);
+    ctx.fillStyle='#000';ctx.fillRect(0,0,S,barH);ctx.fillStyle='#fff';ctx.font=`${f.size}px Anton`;
+    const y0=(barH-f.lines.length*lh)/2+f.size*.9;
+    f.lines.forEach((l,i)=>ctx.fillText(l,S/2,y0+i*lh));
+  }
+  else if(L==='impact'){
+    cover(im,0,0,S,S,b.pfp?.85:ay);
+    const draw=(t,pos)=>{if(!t)return;const f=fit(t.toUpperCase(),'#px Anton',S-80,3,108,44);const lh=f.size*1.04;
+      ctx.font=`${f.size}px Anton`;ctx.lineWidth=f.size*.16;ctx.strokeStyle='#000';ctx.fillStyle='#fff';
+      f.lines.forEach((l,i)=>{const y=pos==='top'?40+f.size*.92+i*lh:S-40-(f.lines.length-1-i)*lh;ctx.strokeText(l,S/2,y);ctx.fillText(l,S/2,y)})};
+    draw(top,'top');draw(bot,'bot');
+  }
+  else if(L==='bubble'){
+    cover(im,0,0,S,S,b.pfp?1:ay);
+    const f=fit(all||'...','bold #px Gaegu',700,4,92,40);const lh=f.size*.98;
+    const bw=Math.min(860,Math.max(...f.lines.map(l=>ctx.measureText(l).width))+90), bh=f.lines.length*lh+60;
+    const bx=60, by=50;
+    ctx.fillStyle='#fff';ctx.strokeStyle='#000';ctx.lineWidth=8;
+    rr(bx,by,bw,bh,46);ctx.fill();ctx.stroke();
+    const tx=Math.min(bx+bw-120,600);
+    ctx.beginPath();ctx.moveTo(tx-40,by+bh-4);ctx.lineTo(tx+40,by+bh+90);ctx.lineTo(tx+50,by+bh-4);ctx.closePath();ctx.fill();ctx.stroke();
+    ctx.fillRect(tx-36,by+bh-10,82,12);
+    ctx.fillStyle='#000';ctx.font=`bold ${f.size}px Gaegu`;
+    f.lines.forEach((l,i)=>ctx.fillText(l,bx+bw/2,by+30+f.size*.8+i*lh));
+  }
+  else if(L==='report'){
+    ctx.fillStyle='#F4EEDC';ctx.fillRect(0,0,S,S);
+    ctx.strokeStyle='rgba(0,0,0,.06)';ctx.lineWidth=2;for(let y=0;y<S;y+=36){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(S,y);ctx.stroke()}
+    ctx.textAlign='left';ctx.fillStyle='#000';ctx.font='800 30px "JetBrains Mono"';ctx.fillText('FIELD REPORT',70,92);
+    ctx.font='400 24px "JetBrains Mono"';ctx.fillText(`OBSERVATION #${obsNo}  ·  AGENT: BOKI  ·  CLASSIFIED-ISH`,70,130);
+    ctx.fillRect(70,150,S-140,5);
+    cover(im,70,180,S-140,500,b.pfp?.72:ay);ctx.lineWidth=6;ctx.strokeStyle='#000';ctx.strokeRect(70,180,S-140,500);
+    const f=fit(all||' ','700 #px "JetBrains Mono"',S-160,5,46,24);const lh=f.size*1.3;
+    ctx.font=`700 ${f.size}px "JetBrains Mono"`;ctx.fillStyle='#111';
+    f.lines.forEach((l,i)=>ctx.fillText(l,74,740+i*lh));
+    ctx.font='400 22px "JetBrains Mono"';ctx.fillStyle='#555';ctx.fillText('DURATION OF STUDY: 3 MIN  ·  CONCLUSION: NONE',70,S-46);
+    ctx.save();ctx.translate(S-230,S-170);ctx.rotate(-.24);ctx.globalAlpha=.85;ctx.strokeStyle='#E8231A';ctx.fillStyle='#E8231A';ctx.lineWidth=9;
+    ctx.strokeRect(-170,-62,340,112);ctx.font='84px Anton';ctx.textAlign='center';ctx.fillText('GAVE UP',0,30);ctx.restore();
+  }
+  else if(L==='subtitle'){
+    ctx.fillStyle='#000';ctx.fillRect(0,0,S,S);
+    cover(im,0,120,S,S-240,b.pfp?1:ay);
+    ctx.fillStyle='#000';ctx.fillRect(0,0,S,120);ctx.fillRect(0,S-120,S,120);
+    const f=fit(all||' ','700 #px "Space Grotesk"',S-140,3,56,30);const lh=f.size*1.15;
+    ctx.font=`700 ${f.size}px "Space Grotesk"`;ctx.lineWidth=f.size*.2;ctx.strokeStyle='#000';ctx.fillStyle='#FFE14A';
+    f.lines.forEach((l,i)=>{const y=S-150-(f.lines.length-1-i)*lh;ctx.strokeText(l,S/2,y);ctx.fillText(l,S/2,y)});
+  }
+  else if(L==='split'){
+    const half=S/2;
+    ctx.fillStyle='#fff';ctx.fillRect(0,0,S,S);
+    // left: expectation (bright, saturated), right: reality (same pic, grey)
+    ctx.save();cover(im,0,150,half-4,S-150,b.pfp?1:ay);ctx.restore();
+    ctx.save();ctx.filter='grayscale(1) contrast(1.1) brightness(.8)';cover(im,half+4,150,half-4,S-150,b.pfp?1:ay);ctx.restore();
+    ctx.fillStyle='#000';ctx.fillRect(0,0,S,150);ctx.fillRect(half-4,150,8,S);
+    const cap=(t,x,lbl)=>{ctx.fillStyle='#fff';ctx.font='30px Anton';ctx.fillText(lbl,x,46);
+      const f=fit((t||' ').toUpperCase(),'#px Anton',half-60,2,46,24);ctx.font=`${f.size}px Anton`;
+      f.lines.forEach((l,i)=>ctx.fillText(l,x,92+i*f.size*1.05+(f.lines.length===1?f.size*.3:0)))};
+    cap(top,half/2,'EXPECTATION');cap(bot,half+half/2,'REALITY');
+  }
+
+  if(state.fry) deepFry();
+  if(state.wm){ctx.textAlign='right';ctx.font='42px Anton';ctx.lineWidth=8;ctx.strokeStyle='#000';ctx.fillStyle='#fff';
+    const y=(L==='subtitle')?S-42:(L==='report'?S-90:S-28);const x=L==='report'?S-70:S-28;
+    if(L!=='report'){ctx.strokeText('$BOKI',x,y);ctx.fillText('$BOKI',x,y)}else{ctx.fillStyle='#000';ctx.fillText('$BOKI',S-70,128)}}
+  cv.toBlob(bl=>{if(!bl)return;const u=URL.createObjectURL(bl);const p=$('#preview');const old=p.src;p.src=u;if(old.startsWith('blob:'))setTimeout(()=>URL.revokeObjectURL(old),4000)},'image/png');
+  $('#layoutName').textContent=LAYOUTS.find(l=>l[0]===L)[1].toUpperCase();
+}
+function deepFry(){
+  const d=ctx.getImageData(0,0,S,S),p=d.data;
+  for(let i=0;i<p.length;i+=4){
+    let r=p[i],g=p[i+1],b=p[i+2];const avg=(r+g+b)/3;
+    r=avg+(r-avg)*2.4;g=avg+(g-avg)*2.4;b=avg+(b-avg)*2.4;
+    r=(r-128)*1.6+128+30;g=(g-128)*1.6+128;b=(b-128)*1.6+128-30;
+    const n=(Math.random()-.5)*70;
+    p[i]=r+n;p[i+1]=g+n;p[i+2]=b+n;
+  }
+  ctx.putImageData(d,0,0);
+  ctx.save();ctx.globalCompositeOperation='overlay';ctx.fillStyle='rgba(255,90,0,.25)';ctx.fillRect(0,0,S,S);ctx.restore();
+  ctx.save();ctx.font='120px serif';ctx.textAlign='center';
+  for(let i=0;i<3;i++){ctx.globalAlpha=.9;ctx.fillText(rand(['😂','💯','🔥','👌','😳','🗿']),ri(120,S-120),ri(S*.45,S-80))}ctx.restore();
+}
+
+/* ---- UI wiring ---- */
+let obsNo=obs(), memeNo=1;
+const layBox=$('#layouts');
+LAYOUTS.forEach(([k,l])=>{const b=document.createElement('button');b.className='chip';b.textContent=l;b.dataset.k=k;b.setAttribute('aria-pressed',k===state.layout);b.onclick=()=>setLayout(k);layBox.appendChild(b)});
+function setLayout(k){state.layout=k;$$('#layouts .chip').forEach(x=>x.setAttribute('aria-pressed',x.dataset.k===k));render()}
+const baseBox=$('#bases');
+function drawBases(){baseBox.innerHTML='';BASES.forEach((b,i)=>{const e=document.createElement('button');e.className='base';e.setAttribute('aria-pressed',i===state.base);e.title=b.name;e.innerHTML=`<img src="${b.src}" alt="">`;e.onclick=()=>selectBase(i);baseBox.appendChild(e)});
+  const up=document.createElement('button');up.className='base up';up.textContent='+ UPLOAD';up.onclick=()=>$('#upload').click();baseBox.appendChild(up)}
+function selectBase(i){state.base=i;$$('#bases .base').forEach((x,j)=>x.setAttribute('aria-pressed',j===i));render()}
+$('#upload').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{BASES.push({src:r.result,name:'yours'});drawBases();selectBase(BASES.length-1)};r.readAsDataURL(f);e.target.value=''});
+drawBases();
+
+let tmr;['topT','botT'].forEach(id=>$('#'+id).addEventListener('input',()=>{clearTimeout(tmr);tmr=setTimeout(render,120)}));
+$('#fry').onchange=e=>{state.fry=e.target.checked;render()};
+$('#wm').onchange=e=>{state.wm=e.target.checked;render()};
+$('#caps').onchange=e=>{state.caps=e.target.checked;render()};
+
+function setText([a,b]){$('#topT').value=a;$('#botT').value=b}
+async function doGenerate(){
+  setText(generate());genCount++;memeNo++;obsNo=obs();
+  $('#genCount').textContent=genCount+' generated';$('#memeNo').textContent=String(memeNo).padStart(4,'0');
+  // layout that needs two parts: make sure bottom exists
+  if(state.layout==='split'&&!$('#botT').value) $('#botT').value='a nap';
+  await render();pushHistory();
+}
+$('#genBtn').onclick=doGenerate;
+$('#chaosBtn').onclick=()=>{
+  state.layout=rand(LAYOUTS)[0];state.base=ri(0,BASES.length-1);state.fry=Math.random()<.15;$('#fry').checked=state.fry;
+  $$('#layouts .chip').forEach(x=>x.setAttribute('aria-pressed',x.dataset.k===state.layout));
+  $$('#bases .base').forEach((x,j)=>x.setAttribute('aria-pressed',j===state.base));
+  doGenerate();
+};
+const hist=[];
+function pushHistory(){
+  const snap={top:$('#topT').value,bot:$('#botT').value,...state};
+  const th=document.createElement('canvas');th.width=112;th.height=112;th.getContext('2d').drawImage(cv,0,0,112,112);
+  const im=document.createElement('img');im.src=th.toDataURL('image/jpeg',.7);im.title=snap.top;
+  im.onclick=()=>{Object.assign(state,snap);$('#topT').value=snap.top;$('#botT').value=snap.bot;$('#fry').checked=snap.fry;$('#wm').checked=snap.wm;$('#caps').checked=snap.caps;
+    $$('#layouts .chip').forEach(x=>x.setAttribute('aria-pressed',x.dataset.k===state.layout));$$('#bases .base').forEach((x,j)=>x.setAttribute('aria-pressed',j===state.base));render()};
+  const h=$('#history');h.prepend(im);while(h.children.length>16)h.lastChild.remove();
+}
+
+/* ---- export ---- */
+const getBlob=()=>new Promise(r=>cv.toBlob(r,'image/png'));
+let downloads=null;
+(async()=>{try{if(window.claude&&claude.use){downloads=await claude.use('downloads')}}catch(e){}})();
+$('#dlBtn').onclick=async()=>{
+  const blob=await getBlob();const name=`boki-meme-${String(memeNo).padStart(4,'0')}.png`;
+  if(downloads){try{await downloads.save({filename:name,data:blob});toast('Saved. BOKI is proud. Ish.');return}catch(e){if(e&&e.code==='declined')return}}
+  try{const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();toast('Downloading…')}catch(e){toast('Right-click / long-press the meme to save it')}
+};
+$('#copyBtn').onclick=async()=>{
+  try{const blob=await getBlob();await navigator.clipboard.write([new ClipboardItem({'image/png':blob})]);toast('Image copied — paste it anywhere')}
+  catch(e){toast('Copy blocked here — right-click / long-press the meme to copy')}
+};
+$('#xBtn').addEventListener('click',()=>{$('#xBtn').href='https://x.com/intent/post?text='+encodeURIComponent('made this with the $BOKI meme lab. BOKI gave up. I did not.')});
+
+/* ---- boot ---- */
+(async()=>{
+  try{await Promise.all(['96px Anton','bold 60px Gaegu','700 40px "JetBrains Mono"','400 20px "JetBrains Mono"','700 50px "Space Grotesk"'].map(f=>document.fonts.load(f)))}catch(e){}
+  setText(FIXED[0]);await render();pushHistory();
+  BASES.forEach(b=>loadImg(b.src));
+})();
+</script>
+</body>
+</html>
